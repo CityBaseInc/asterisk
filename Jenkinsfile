@@ -15,7 +15,6 @@ pipeline {
       }
       environment {
         BUILD_ENV = 'prod'
-        ASTERISK_VERSION='15.7.1'
       }
       options {
         timeout(time: 30, unit: 'MINUTES')
@@ -26,7 +25,7 @@ pipeline {
       steps {
         script {
           docker.withRegistry('https://quay.io', 'quay-login'){
-            def image = docker.build("citybaseinc/${env.PROJECT_NAME}:${env.GIT_COMMIT}", "--network=jenkins-bridge --build-arg ASTERISK_VERSION=${ASTERISK_VERSION} .")
+            def image = docker.build("citybaseinc/${env.PROJECT_NAME}:${env.GIT_COMMIT}", "--network=jenkins-bridge .")
             image.push("${env.GIT_COMMIT}")
             image.push("${env.GIT_BRANCH}")
             if(env.GIT_BRANCH == 'master'){
