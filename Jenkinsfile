@@ -15,7 +15,7 @@ pipeline {
       }
       environment {
         BUILD_ENV = 'prod'
-        ASTERISK_VERSION='16.3.0'
+        ASTERISK_VERSION='15.7.1'
       }
       options {
         timeout(time: 30, unit: 'MINUTES')
