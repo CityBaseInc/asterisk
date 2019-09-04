@@ -1,8 +1,8 @@
-FROM alpine:3.9
+FROM alpine:3.10
 
 MAINTAINER Citybase
 
-ARG ASTERISK_VERSION=15.7.1
+ARG ASTERISK_VERSION=16.3.0
 
 COPY config /etc/asterisk
 
