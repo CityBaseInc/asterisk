@@ -6,6 +6,6 @@ ARG ASTERISK_VERSION=16.3.0-r1
 
 COPY config /etc/asterisk
 
-RUN apk add --no-cache asterisk~=$ASTERISK_VERSION
+RUN apk add --no-cache asterisk-curl asterisk~=$ASTERISK_VERSION
 
 CMD asterisk -cvv
