@@ -6,7 +6,6 @@ pipeline {
   stages {
     stage('Build & Push') {
       agent {
-        // https://github.com/jenkinsci/kubernetes-plugin#declarative-pipeline
         kubernetes {
           label "asterisk-build"
           defaultContainer 'docker'
@@ -15,14 +14,11 @@ pipeline {
       }
       environment {
         BUILD_ENV = 'prod'
-        ASTERISK_VERSION='16.3.0-r1'
+        ASTERISK_VERSION='16.3.0-r2'
       }
       options {
         timeout(time: 30, unit: 'MINUTES')
       }
-      // TODO: Docker-in-Docker?
-      // TODO: Tag and push intermediate build stages?
-      // TODO: Pull prior images for build caching?
       steps {
         script {
           docker.withRegistry('https://quay.io', 'quay-login'){
